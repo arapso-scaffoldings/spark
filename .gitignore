@@ -1,6 +1,6 @@
 # intelij
 .idea/
-
+*.iml
 
 # scala
 target/
