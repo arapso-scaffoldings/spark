@@ -2,7 +2,7 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <modelVersion>4.0.0</modelVersion>
             <groupId>pl.arapso.examples.spark</groupId>
-            <artifactId>spark-maven-example</artifactId>
+            <artifactId>spark-s3-aggregates-copy-with-hash-check</artifactId>
             <version>0.1-SNAPSHOT</version>
 
 
