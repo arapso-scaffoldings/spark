@@ -1,4 +1,4 @@
-package pl.arapso.examples.spark
+package pl.arapso.examples.spark.s3.copy
 
 import java.io.InputStream
 import java.net.URI

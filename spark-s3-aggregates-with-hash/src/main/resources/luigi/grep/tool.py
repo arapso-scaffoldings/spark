@@ -62,7 +62,8 @@ class PublishGreppedLines(SparkSubmitTask):
         hash_path = self.s3_aggr_hash_path
         aggregates_path = self.s3_aggr_path
 
-        return hash_evaluator.is_aggregates_valid(that=that,
+        return hash_evaluator.\
+            check_if_hashes_equals(old_aggr_exists=Task.complete(self),
                                                   src_files_path=src_files_path,
                                                   src_files_filter=src_files_filter,
                                                   aggregates_path=aggregates_path,
