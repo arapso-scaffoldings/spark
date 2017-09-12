@@ -5,7 +5,7 @@ import org.apache.spark.sql.functions.{col, substring_index, sum, when, broadcas
 import org.apache.spark.sql.{Dataset, SparkSession}
 
 object DatasetsProcessing extends App {
-  case class ProcessedRequest(bidId: String, domain: String)
+  case class ProcessedRequest(bidId: String, domain: Option[String], url: Option[String])
 
   case class Event(
     sspBidId: String,

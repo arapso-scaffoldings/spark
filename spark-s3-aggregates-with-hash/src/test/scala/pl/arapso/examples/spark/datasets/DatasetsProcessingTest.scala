@@ -11,8 +11,8 @@ class DatasetsProcessingTest
 
   it should "join two datasets" in {
     val requests = sc.parallelize(Seq(
-      ProcessedRequest("123", "wp.pl"),
-      ProcessedRequest("124", "nobid.com")
+      ProcessedRequest("123", Some("wp.pl"), Some("http://www.wp.pl/page1?test=1")),
+      ProcessedRequest("124", Some("nobid.com"), Some("www.nobid.com/sample"))
     ))
 
     val eventsSource =
@@ -32,9 +32,9 @@ class DatasetsProcessingTest
 
   it should "join multiple events to one request" in {
     val requests = sc.parallelize(Seq(
-      ProcessedRequest("123", "wp.pl"),
-      ProcessedRequest("124", "wp.pl"),
-      ProcessedRequest("125", "onet.pl")
+      ProcessedRequest("123", Some("wp.pl"), None),
+      ProcessedRequest("124", Some("wp.pl"), None),
+      ProcessedRequest("125", Some("onet.pl"), None)
     ))
     val eventsSource =
       """
@@ -58,7 +58,7 @@ class DatasetsProcessingTest
 
   it should "join multiple events to same request" in {
     val requests = sc.parallelize(Seq(
-      ProcessedRequest("123", "roq.ad")
+      ProcessedRequest("123", Some("roq.ad"), None)
     ))
 
     val eventsSource =
