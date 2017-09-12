@@ -1,3 +1,5 @@
+package pl.arapso.examples.spark
+
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
 import org.scalatest.{BeforeAndAfterAll, Suite}
@@ -9,7 +11,7 @@ trait SparkBaseTest extends BeforeAndAfterAll {
 
   private val AppName = s"spark-test-${getClass.getSimpleName}"
 
-  protected lazy val spark: SparkSession =
+  protected implicit lazy val spark: SparkSession =
     sessionBuilder().getOrCreate()
 
   protected lazy val sc: SparkContext = spark.sparkContext

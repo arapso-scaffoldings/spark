@@ -1,3 +1,5 @@
+package pl.arapso.examples.spark
+
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
 class SparkExampleTest extends FlatSpec with Matchers with BeforeAndAfter with SparkBaseTest {
@@ -19,5 +21,5 @@ class SparkExampleTest extends FlatSpec with Matchers with BeforeAndAfter with S
     result should have length 1
     result should contain theSameElementsAs List("temp")
   }
-  
+
 }
