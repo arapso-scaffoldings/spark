@@ -2,7 +2,7 @@ package pl.arapso.examples.spark.datasets
 
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 import pl.arapso.examples.spark.SparkBaseTest
-import pl.arapso.examples.spark.datasets.DatasetsProcessing.{Aggregate, Request, _}
+import pl.arapso.examples.spark.datasets.DatasetsProcessing.{Aggregate, ProcessedRequest, _}
 
 class DatasetsProcessingTest
   extends FlatSpec with Matchers with BeforeAndAfter with SparkBaseTest {
@@ -11,8 +11,8 @@ class DatasetsProcessingTest
 
   it should "join two datasets" in {
     val requests = sc.parallelize(Seq(
-      Request("123", "wp.pl"),
-      Request("124", "nobid.com")
+      ProcessedRequest("123", "wp.pl"),
+      ProcessedRequest("124", "nobid.com")
     ))
 
     val eventsSource =
@@ -32,9 +32,9 @@ class DatasetsProcessingTest
 
   it should "join multiple events to one request" in {
     val requests = sc.parallelize(Seq(
-      Request("123", "wp.pl"),
-      Request("124", "wp.pl"),
-      Request("125", "onet.pl")
+      ProcessedRequest("123", "wp.pl"),
+      ProcessedRequest("124", "wp.pl"),
+      ProcessedRequest("125", "onet.pl")
     ))
     val eventsSource =
       """
@@ -58,7 +58,7 @@ class DatasetsProcessingTest
 
   it should "join multiple events to same request" in {
     val requests = sc.parallelize(Seq(
-      Request("123", "roq.ad")
+      ProcessedRequest("123", "roq.ad")
     ))
 
     val eventsSource =

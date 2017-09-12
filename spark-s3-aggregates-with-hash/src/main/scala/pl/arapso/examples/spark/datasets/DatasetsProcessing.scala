@@ -1,11 +1,11 @@
 package pl.arapso.examples.spark.datasets
 
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.functions.{col, substring_index, sum, when}
+import org.apache.spark.sql.functions.{col, substring_index, sum, when, broadcast}
 import org.apache.spark.sql.{Dataset, SparkSession}
 
 object DatasetsProcessing extends App {
-  case class Request(bidId: String, domain: String)
+  case class ProcessedRequest(bidId: String, domain: String)
 
   case class Event(
     sspBidId: String,
@@ -38,9 +38,9 @@ object DatasetsProcessing extends App {
     cost: Long
   )
 
-  def parseAndJoin(requests: RDD[Request], eventsSource: RDD[String])(implicit spark: SparkSession): Dataset[Aggregate] = {
+  def parseAndJoin(requests: RDD[ProcessedRequest], eventsSource: RDD[String])(implicit spark: SparkSession): Dataset[Aggregate] = {
     import spark.implicits._
-    val events = Event.toDF(eventsSource)
+    val events = broadcast(Event.toDF(eventsSource))
 
     val joinedEvents = requests.toDF().join(events, 'bidId === 'sspBidId)
 
